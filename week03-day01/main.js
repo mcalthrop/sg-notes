@@ -72,3 +72,22 @@ if (dayOfWeek.toUpperCase() === 'THURSDAY' || dayOfWeek.toUpperCase() === 'FRIDA
 } else {
   console.log('Bummer :-(');
 }
+
+console.log('--- truthy/falsey:');
+var truthyThings = [1, 0, 'something', '', -1, {}, [], null, undefined, NaN, 'false', '0'];
+
+for(var i = 0 ; i < truthyThings.length ; i++) {
+  if (truthyThings[i]) {
+    console.log('  ', truthyThings[i], '--> truthy');
+  } else {
+    console.log('  ', truthyThings[i], '--> falsey');
+  }
+}
+
+var yourName = prompt('What is your name?');
+
+if (yourName) {
+  alert('Nice one, ' + yourName);
+} else {
+  alert('Not sure what your name is!');
+}
