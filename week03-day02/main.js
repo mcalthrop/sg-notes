@@ -34,3 +34,29 @@ if (a === {}) {
 } else {
   console.log('NOT! They are not equal!');
 }
+
+console.log('--- Functions:');
+
+function createPerson(firstName, lastName, email, age) {
+  var newPerson = {
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    age: age
+  };
+
+  return newPerson;
+}
+
+var harald = createPerson('Harald', 'Kumar', 'h.kumar@example.com', 15);
+console.log('newPerson:', harald);
+
+function isOldEnough(age) {
+  return (age >= 18);
+}
+
+if (isOldEnough(harald.age)) {
+  console.log('Come in');
+} else {
+  console.log('Come back when you are older.');
+}
