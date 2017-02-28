@@ -91,3 +91,21 @@ if (yourName) {
 } else {
   alert('Not sure what your name is!');
 }
+
+console.log('--- Loops:');
+var question = 'Now using a while() loop. What is your name?';
+yourName = prompt(question);
+while (!yourName) {
+  alert('Not sure what your name is!');
+  yourName = prompt(question);
+}
+alert('Nice one, ' + yourName);
+
+do {
+  yourName = prompt('Now using a do/while() loop. What is your name?');
+  if (!yourName) {
+    alert('Not sure what your name is!');
+  }
+} while (!yourName);
+alert('Nice one, ' + yourName);
+
