@@ -37,19 +37,29 @@ if (a === {}) {
 
 console.log('--- Functions:');
 
+var capitalCity = 'London';  // global variable
+
 function createPerson(firstName, lastName, email, age) {
   var newPerson = {
     firstName: firstName,
     lastName: lastName,
     email: email,
-    age: age
+    age: age,
+    capitalCity: capitalCity, // access global variable from within function
+    fullName: function() {
+      return firstName + ' ' + lastName + ' from ' + capitalCity;
+    }
   };
 
   return newPerson;
 }
 
 var harald = createPerson('Harald', 'Kumar', 'h.kumar@example.com', 15);
-console.log('newPerson:', harald);
+console.log('new person\'s full name:', harald.fullName());
+var tola = createPerson('Tola', 'Olaoke', 'tolaoke@spartaglobal.co', 21);
+var asma = createPerson('Asma', 'Chaima', 'achaima@spartaglobal.co', 21);
+people = [];
+people.push(harald, asma, tola);
 
 function isOldEnough(age) {
   return (age >= 18);
@@ -59,4 +69,12 @@ if (isOldEnough(harald.age)) {
   console.log('Come in');
 } else {
   console.log('Come back when you are older.');
+}
+
+var oldEnoughComment;
+for (i = 0; i < people.length ; i++) {
+  oldEnoughComment = (isOldEnough(people[i].age))
+    ? 'is old enough'
+    : 'is NOT old enough';
+  console.log(people[i].fullName(), oldEnoughComment);
 }
