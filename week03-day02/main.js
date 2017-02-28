@@ -78,3 +78,32 @@ for (i = 0; i < people.length ; i++) {
     : 'is NOT old enough';
   console.log(people[i].fullName(), oldEnoughComment);
 }
+
+console.log('--- OO Javascript:');
+
+function Circle(radius) {
+  this.radius = radius;
+  // one way to write an instance method
+  this.circumference = function () {
+    return 2 * Circle.PI * this.radius;
+  };
+}
+
+// static (or class) property/variable:
+Circle.PI = 3.1415927;  // normally would use Math.PI - using this for demo purposes
+
+// another way to write an instance method:
+// add it to the prototype
+Circle.prototype.area = function () {
+  return Circle.PI * this.radius * this.radius;
+};
+
+var coin = new Circle(1.2);
+var plate = new Circle(7);
+var circles = [coin, plate];
+
+for (i = 0; i < circles.length ; i++) {
+  console.log('Radius is:', circles[i].radius);
+  console.log('Circumference is:', circles[i].circumference());
+  console.log('Area is:', circles[i].area());
+}
