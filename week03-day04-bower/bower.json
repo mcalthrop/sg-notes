@@ -1,0 +1,21 @@
+{
+  "name": "week03-day04-bower",
+  "homepage": "https://github.com/mcalthrop/sg-notes",
+  "authors": [
+    "Matt Calthrop <mcalthrop@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "bootstrap": "^3.3.7"
+  }
+}
