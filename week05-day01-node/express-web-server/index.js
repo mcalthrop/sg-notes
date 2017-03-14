@@ -16,8 +16,8 @@ var users = [
   }
 ];
 
-function findUserById(userId) {
-  return users.find(function (user) {
+function findUserIndexById(userId) {
+  return users.findIndex(function (user) {
     return user.id === userId;
   });
 }
@@ -52,28 +52,46 @@ app.put('/users/:id', function(req, res) {
 // Action: show
 app.get('/users/:id', function(req, res) {
   var userId = req.params.id;
+  var userIndex;
   var user;
+  var status;
   var html = '<h1>Show user ' + userId + '</h1>';
 
-  user = findUserById(userId);
+  userIndex = findUserIndexById(userId);
 
-  if (user) {
+  if (userIndex !== -1) {
+    user = users[userIndex];
+    status = 200;
     html += '<p>First name: ' + user.firstName + '</p>';
     html += '<p>Last name: ' + user.lastName + '</p>';
     html += '<p>Email: ' + user.email + '</p>';
   } else {
+    status = 404;
     html += '<em>User not found with id ' + userId + '</em>';
   }
 
-  res.status(200).send(html);
+  res.status(status).send(html);
 });
 // Action: destroy
 app.delete('/users/:id', function(req, res) {
-  // TODO implement for homework 2013-03-13
-  // - get user specified by :id request parameter
-  // - if it exists, remove it from the array
-  // - if it does not exist, display message in <em> tags (user with id does not exist)
-  res.status(200).send('<h1>Action: delete</h1>');
+  var userId = req.params.id;
+  var userIndex;
+  var status;
+  var html = '<h1>Delete user ' + userId + '</h1>';
+
+  userIndex = findUserIndexById(userId);
+
+  if (userIndex !== -1) {
+    // user exists
+    users.splice(userIndex, 1);
+    status = 200;
+    html += 'User with id ' + userId + ' deleted';
+  } else {
+    // trying to delete non-existent user
+    status = 404;
+    html += '<em>User with id ' + userId + ' does not exist; cannot delete</em>';
+  }
+  res.status(status).send(html);
 });
 
 app.listen(port, function() {
