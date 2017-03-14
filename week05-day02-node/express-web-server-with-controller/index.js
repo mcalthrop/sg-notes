@@ -6,6 +6,11 @@ var app = express();
 var port = 3000;
 
 app.set('view engine', 'ejs');
+app.use(function (req, res, next) {
+  // simple middleware logging
+  console.log(req.method, req.path);
+  next();
+});
 app.use(layouts);
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
