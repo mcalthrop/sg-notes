@@ -29,14 +29,10 @@ function getNextUserId() {
 
 // Action: index
 function indexUsers(req, res) {
-  var html = '<h1>List of users</h1>';
-
-  html += '<ul>';
-  for (var i = 0; i < users.length; i++) {
-    html += '<li><a href="/users/' + users[i].id + '">' + users[i].firstName + ' ' + users[i].lastName + ' (' + users[i].email + ')' + '</a></li>';
-  }
-  html += '</ul>';
-  res.status(200).send(html);
+  res.render('users/index', {
+    title: 'User list',
+    users: users
+  });
 }
 
 // Action: new
