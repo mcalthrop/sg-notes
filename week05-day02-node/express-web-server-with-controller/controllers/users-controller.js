@@ -64,7 +64,27 @@ function editUser(req, res) {
 
 // Action: update
 function updateUser(req, res) {
-  res.status(200).send('<h1>Action: update</h1>');
+  var userId = req.params.id;
+  var userIndex = findUserIndexById(userId);
+  var user;
+  var status;
+  var html = '<h1>Updating user with id ' + userId + '</h1>';
+
+  if (userIndex !== -1) {
+    // found the user
+    user = users[userIndex];
+    user.firstName = req.body.firstName;
+    user.lastName = req.body.lastName;
+    user.email = req.body.email;
+    html += '<p>User updated</p>';
+    status = 200;
+  } else {
+    // user with :id does not exist
+    html += '<em>Could not find user with id ' + userId + '</em>';
+    status = 404;
+  }
+
+  res.status(status).send(html);
 }
 
 // Action: show
