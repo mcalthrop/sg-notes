@@ -1,0 +1,7 @@
+<% if (user) { %>
+  <p>First name: <%= user.firstName %></p>
+  <p>Last name: <%= user.lastName %></p>
+  <p>Email: <%= user.email %></p>
+<% } else { %>
+  <em>User not found. Soz.</em>
+<% } %>
