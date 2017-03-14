@@ -50,7 +50,7 @@ function createUser(req, res) {
   };
 
   users.push(newUser);
-  res.status(200).send('<h1>Action: created new user with id ' + newUser.id + '</h1>');
+  res.redirect('/users');
 }
 
 // Action: edit
@@ -63,7 +63,6 @@ function updateUser(req, res) {
   var userId = req.params.id;
   var userIndex = findUserIndexById(userId);
   var user;
-  var status;
   var html = '<h1>Updating user with id ' + userId + '</h1>';
 
   if (userIndex !== -1) {
@@ -72,15 +71,13 @@ function updateUser(req, res) {
     user.firstName = req.body.firstName;
     user.lastName = req.body.lastName;
     user.email = req.body.email;
-    html += '<p>User updated</p>';
-    status = 200;
+    // TODO: fix: this produces an error - Cannot PUT /users
+    res.redirect('/users');
   } else {
     // user with :id does not exist
     html += '<em>Could not find user with id ' + userId + '</em>';
-    status = 404;
+    res.status(404).send(html);
   }
-
-  res.status(status).send(html);
 }
 
 // Action: show
@@ -109,7 +106,6 @@ function showUser(req, res) {
 function destroyUser(req, res) {
   var userId = req.params.id;
   var userIndex;
-  var status;
   var html = '<h1>Delete user ' + userId + '</h1>';
 
   userIndex = findUserIndexById(userId);
@@ -117,14 +113,13 @@ function destroyUser(req, res) {
   if (userIndex !== -1) {
     // user exists
     users.splice(userIndex, 1);
-    status = 200;
-    html += 'User with id ' + userId + ' deleted';
+    // TODO: fix: this produces an error - Cannot PUT /users
+    res.redirect('/users');
   } else {
     // trying to delete non-existent user
-    status = 404;
     html += '<em>User with id ' + userId + ' does not exist; cannot delete</em>';
+    res.status(404).send(html);
   }
-  res.status(status).send(html);
 }
 
 module.exports = {
