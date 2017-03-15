@@ -37,7 +37,9 @@ function indexUsers(req, res) {
 
 // Action: new
 function newUser(req, res) {
-  res.status(200).send('<h1>Action: new</h1>');
+  res.render('users/new', {
+    title: 'New user'
+  });
 }
 
 // Action: create
@@ -55,7 +57,22 @@ function createUser(req, res) {
 
 // Action: edit
 function editUser(req, res) {
-  res.status(200).send('<h1>Action: edit</h1>');
+  var userId = req.params.id;
+  var userIndex = findUserIndexById(userId);
+  var user;
+  var status;
+
+  if (userIndex !== -1) {
+    user = users[userIndex];
+    status = 200;
+  } else {
+    status = 404;
+  }
+
+  res.status(status).render('users/edit', {
+    title: 'Edit user ' + userId,
+    user: user
+  });
 }
 
 // Action: update
@@ -63,7 +80,7 @@ function updateUser(req, res) {
   var userId = req.params.id;
   var userIndex = findUserIndexById(userId);
   var user;
-  var html = '<h1>Updating user with id ' + userId + '</h1>';
+  var json;
 
   if (userIndex !== -1) {
     // found the user
@@ -71,12 +88,12 @@ function updateUser(req, res) {
     user.firstName = req.body.firstName;
     user.lastName = req.body.lastName;
     user.email = req.body.email;
-    // TODO: fix: this produces an error - Cannot PUT /users
+    // TODO: fix: this produces an error - "Cannot PUT /users"
     res.redirect('/users');
   } else {
     // user with :id does not exist
-    html += '<em>Could not find user with id ' + userId + '</em>';
-    res.status(404).send(html);
+    json = { error: 'Could not find user with id ' + userId };
+    res.status(404).json(json);
   }
 }
 
@@ -106,19 +123,19 @@ function showUser(req, res) {
 function destroyUser(req, res) {
   var userId = req.params.id;
   var userIndex;
-  var html = '<h1>Delete user ' + userId + '</h1>';
+  var json;
 
   userIndex = findUserIndexById(userId);
 
   if (userIndex !== -1) {
     // user exists
     users.splice(userIndex, 1);
-    // TODO: fix: this produces an error - Cannot PUT /users
+    // TODO: fix: this produces an error - "Cannot DELETE /users"
     res.redirect('/users');
   } else {
     // trying to delete non-existent user
-    html += '<em>User with id ' + userId + ' does not exist; cannot delete</em>';
-    res.status(404).send(html);
+    json = { error: 'Could not find user with id ' + userId };
+    res.status(404).json(json);
   }
 }
 
