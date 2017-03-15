@@ -1,0 +1,13 @@
+<% if (user) { %>
+  <p>First name: <%= user.firstName %></p>
+  <p>Last name: <%= user.lastName %></p>
+  <p>Email: <%= user.email %></p>
+  <form action="/users/<%= user.id %>">
+    <!-- Delete will not work at this point - cannot specify DELETE as value for method attribute on form -->
+    <!-- Will fix in a later iteration -->
+    <button>Delete</button>
+    <a href="/users/<%= user.id %>/edit">Edit</a>
+  </form>
+<% } else { %>
+  <em>User not found. Soz.</em>
+<% } %>
