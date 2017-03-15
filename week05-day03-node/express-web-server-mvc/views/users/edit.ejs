@@ -1,10 +1,9 @@
 <% if (user) { %>
-  <form action="/users/<%= user.id %>">
-    <!-- Update will not work at this point - cannot specify PUT as value for method attribute on form -->
-    <!-- Will fix in a later iteration -->
+  <form method="post" action="/users/<%= user.id %>">
+    <input type="hidden" name="_method" value="put">
     <input type="text" name="firstName" placeholder="First Name" value="<%= user.firstName %>">
     <input type="text" name="lastName" placeholder="Last Name" value="<%= user.lastName %>">
-    <input type="text" name="email" placeholder="Email" value="<%= user.email %>">
+    <input type="email" name="email" placeholder="Email" value="<%= user.email %>">
     <button>Update</button>
   </form>
 <% } else { %>
