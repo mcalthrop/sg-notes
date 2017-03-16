@@ -30,8 +30,17 @@ function createUser(req, res) {
   newUser.email = req.body.email;
 
   newUser.save(function (err) {
+    var errorJson = [];
+
     if (err) {
-      console.log('Could not create new user:', err);
+      console.log('Could not create new user: errors:', err.errors);
+      for (var path in err.errors) {
+        errorJson.push({
+          path: path,
+          message: err.errors[path].message
+        });
+      }
+      res.status(400).json(errorJson);
       return;
     }
     res.redirect('/users');
