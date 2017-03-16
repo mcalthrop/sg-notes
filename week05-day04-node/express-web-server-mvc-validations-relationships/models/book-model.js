@@ -1,6 +1,10 @@
 var mongoose = require('mongoose');
-
-var Book = mongoose.model('Book', {
+var Schema = mongoose.Schema;
+var validationRules = {
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
   title: {
     type: String,
     required: true
@@ -9,6 +13,8 @@ var Book = mongoose.model('Book', {
     type: String,
     required: true
   }
-});
+};
+var BookSchema = new Schema(validationRules);
+var Book = mongoose.model('Book', BookSchema);
 
 module.exports = Book;
