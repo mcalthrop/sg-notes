@@ -1,0 +1,11 @@
+<% if (user) { %>
+  <form method="post" action="/users/<%= user.id %>">
+    <input type="hidden" name="_method" value="put">
+    <input type="text" name="firstName" placeholder="First Name" value="<%= user.firstName %>">
+    <input type="text" name="lastName" placeholder="Last Name" value="<%= user.lastName %>">
+    <input type="email" name="email" placeholder="Email" value="<%= user.email %>">
+    <button>Update</button>
+  </form>
+<% } else { %>
+  <em>User not found. Soz.</em>
+<% } %>
