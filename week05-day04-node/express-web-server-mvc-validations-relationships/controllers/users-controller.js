@@ -5,6 +5,9 @@ function indexUsers(req, res) {
   User.find({}, function (err, users) {
     if (err) {
       console.log('Could not get list of users:', err);
+      // A little bit lazy, but not going to implement
+      // anything more complex at this point in time:
+      res.status(500).send('Could not get list of users');
       return;
     }
     res.render('users/index', {
@@ -54,10 +57,10 @@ function editUser(req, res) {
   User.findOne({ _id: userId }, function (err, user) {
     if (err) {
       console.log('Could not get user:', err);
-      res.status(404).send();
+      // ditto comment above re. keeping complexity to a minimum:
+      res.status(404).send('Could not get user');
       return;
     }
-    console.log('user:', user);
     res.render('users/edit', {
       title: 'Edit user',
       user: user
@@ -77,7 +80,8 @@ function updateUser(req, res) {
   User.findOneAndUpdate({ _id: userId }, updatedUser, function (err) {
     if (err) {
       console.log('Could not get existing user to update:', err);
-      res.status(404).send();
+      // ditto comment above re. keeping complexity to a minimum:
+      res.status(404).send('Could not get existing user to update');
       return;
     }
     res.redirect('/users');
@@ -91,10 +95,10 @@ function showUser(req, res) {
   User.findOne({ _id: userId }, function (err, user) {
     if (err) {
       console.log('Could not get user:', err);
-      res.status(404).send();
+      // ditto comment above re. keeping complexity to a minimum:
+      res.status(404).send('Could not get user');
       return;
     }
-    console.log('user:', user);
     res.render('users/show', {
       title: 'Show user',
       user: user
@@ -109,7 +113,8 @@ function destroyUser(req, res) {
   User.deleteOne({ _id: userId }, function (err) {
     if (err) {
       console.log('Could not get user to delete:', err);
-      res.status(404).send();
+      // ditto comment above re. keeping complexity to a minimum:
+      res.status(404).send('Could not get user to delete');
       return;
     }
     res.redirect('/users');
