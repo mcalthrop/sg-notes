@@ -29,6 +29,7 @@ describe('Users', function () {
         expect(err).to.be.null;
         res.should.have.status(200);
         res.should.be.html;
+        res.text.should.match(/User list/);
         done();
       });
   });
