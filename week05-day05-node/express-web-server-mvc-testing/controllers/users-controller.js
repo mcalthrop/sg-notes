@@ -112,7 +112,7 @@ function destroyUser(req, res) {
 
   User.deleteOne({ _id: userId }, function (err) {
     if (err) {
-      console.log('Could not get user to delete:', err);
+      console.log('Could not get user to delete:', err.message);
       // ditto comment above re. keeping complexity to a minimum:
       res.status(404).send('Could not get user to delete');
       return;
