@@ -9,16 +9,11 @@ function seedData() {
   var book2 = new Book();
   var user = new User();
   var booksSaved = [];
-  var booksSavedIds = [];
-  var userSaved;
 
   book1.title = 'Great Expectations';
   book1.author = 'Chucky D';
   book2.title = '1984';
   book2.author = 'George Orwell';
-  user.firstName = 'Freddie';
-  user.lastName = 'Mercury';
-  user.email = 'freddie@example.com';
 
   book1.save(function (err, book1Result) {
     if (err) {
@@ -26,24 +21,24 @@ function seedData() {
       process.exit(1);
     }
     booksSaved.push(book1Result);
-    booksSavedIds.push(mongoose.Types.ObjectId(book1Result._id));
     book2.save(function (err, book2Result) {
       if (err) {
         console.log('could not create book2: err:', err);
         process.exit(1);
       }
       booksSaved.push(book2Result);
-      booksSavedIds.push(mongoose.Types.ObjectId(book2Result._id));
       console.log('booksSaved:', booksSaved);
-      user.books.push(booksSavedIds[0]);
-      user.books.push(booksSavedIds[1]);
+      user.firstName = 'Freddie';
+      user.lastName = 'Mercury';
+      user.email = 'freddie@example.com';
+      user.books.push(booksSaved[0]._id);
+      user.books.push(booksSaved[1]._id);
       user.save(function (err, userResult) {
         if (err) {
           console.log('could not create user: err:', err);
           process.exit(1);
         }
-        userSaved = userResult;
-        console.log('userSaved:', userSaved);
+        console.log('user saved:', userResult);
         mongoose.connection.close();
       });
     });
