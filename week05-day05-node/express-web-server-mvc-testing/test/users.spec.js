@@ -76,6 +76,39 @@ describe('Users', function () {
     });
   });
 
+  describe('POST', function () {
+    it('should return error when firstName is blank', function (done) {
+      request
+        .post('/users')
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .send({ firstName: '', email: 'testpostlastname@example.com' })
+        .end(function (err, res) {
+          var jsonResponse = JSON.parse(res.text);
+
+          res.should.have.status(400);
+          expect(jsonResponse).to.be.an('array');
+          expect(jsonResponse.length).to.equal(1);
+          expect(jsonResponse[0].path).to.equal('firstName');
+          done();
+        });
+    });
+    it('should return error email is blank', function (done) {
+      request
+        .post('/users')
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .send({ firstName: 'testPostFirstName', email: '' })
+        .end(function (err, res) {
+          var jsonResponse = JSON.parse(res.text);
+
+          res.should.have.status(400);
+          expect(jsonResponse).to.be.an('array');
+          expect(jsonResponse.length).to.equal(1);
+          expect(jsonResponse[0].path).to.equal('email');
+          done();
+        });
+    });
+  });
+
   describe('DELETE', function () {
     it('should return error for non-existent user id', function (done) {
       request
