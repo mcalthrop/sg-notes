@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var layouts = require('express-ejs-layouts');
 var methodOverride = require('method-override');
 var mongoose = require('mongoose');
+var session = require('express-session');
 var app = express();
 var port = 3000;
 
@@ -13,6 +14,23 @@ app.set('view engine', 'ejs');
 app.use(function (req, res, next) {
   // simple middleware logging
   console.log(req.method, req.path);
+  next();
+});
+app.use(session({
+  secret: 'secret squirrel',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 24 * 60 * 60 * 1000
+  }
+}));
+app.use(function (req, res, next) {
+  var pageViews = parseInt(req.session.pageViews);
+
+  if (!pageViews) {
+    req.session.pageViews = 0;
+  }
+  req.session.pageViews += 1;
   next();
 });
 app.use(layouts);
