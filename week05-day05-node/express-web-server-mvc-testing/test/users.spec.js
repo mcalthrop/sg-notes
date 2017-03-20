@@ -20,6 +20,10 @@ function getFirstUserIdFromUserListHTML(html) {
   return pathElements[2];
 }
 
+function generateUniqueFirstName() {
+  return 'firstName' + Math.random();
+}
+
 describe('Users', function () {
   beforeEach(function () {
     request = chai.request(app);
@@ -104,6 +108,21 @@ describe('Users', function () {
           expect(jsonResponse).to.be.an('array');
           expect(jsonResponse.length).to.equal(1);
           expect(jsonResponse[0].path).to.equal('email');
+          done();
+        });
+    });
+    it('should create new user when input data is valid', function (done) {
+      var testFirstName = generateUniqueFirstName();
+
+      request
+        .post('/users')
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .send({ firstName: testFirstName, email: 'testpost@example.com' })
+        .end(function (err, res) {
+          var firstNameRegExp = new RegExp(testFirstName);
+
+          res.should.have.status(200);
+          res.text.should.match(firstNameRegExp);
           done();
         });
     });
