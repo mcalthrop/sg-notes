@@ -10,7 +10,14 @@
   <h2>Books</h2>
   <ol>
     <% for (var i = 0; i < user.books.length; i++) { %>
-      <li><%= user.books[i].title %> <em>by <%= user.books[i].author %></em></li>
+      <li>
+        <%= user.books[i].title %> <em>by <%= user.books[i].author %></em>
+        <form method="post" action="/books/<%= user.id %>">
+          <input type="hidden" name="_method" value="delete">
+          <button>Delete</button>
+          <a href="/books/<%= user.books[i].id %>/edit">Edit</a>
+        </form>
+      </li>
     <% } %>
   </ol>
 <% } else { %>
