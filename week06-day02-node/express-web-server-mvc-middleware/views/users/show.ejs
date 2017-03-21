@@ -7,6 +7,12 @@
     <button>Delete</button>
     <a href="/users/<%= user.id %>/edit">Edit</a>
   </form>
+  <h2>Books</h2>
+  <ol>
+    <% for (var i = 0; i < user.books.length; i++) { %>
+      <li><%= user.books[i].title %> <em>by <%= user.books[i].author %></em></li>
+    <% } %>
+  </ol>
 <% } else { %>
   <em>User not found. Soz.</em>
 <% } %>
