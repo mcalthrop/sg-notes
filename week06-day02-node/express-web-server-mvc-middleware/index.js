@@ -16,6 +16,7 @@ app.use(function (req, res, next) {
   console.log(req.method, req.path);
   next();
 });
+app.use(express.static('public'));
 app.use(session({
   secret: 'secret squirrel',
   resave: false,
