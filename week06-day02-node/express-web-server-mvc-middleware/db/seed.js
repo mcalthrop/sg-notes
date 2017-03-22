@@ -1,45 +1,53 @@
-// Basic seeds file.
-// Poorly-executed, but does the job of creating one user, who has 2 books.
 var User = require('../models/user-model');
 var Book = require('../models/book-model');
 var mongoose = require('mongoose');
 
 function seedData() {
-  var book1 = new Book();
-  var book2 = new Book();
   var user = new User();
-  var booksSaved = [];
 
-  book1.title = 'Great Expectations';
-  book1.author = 'Chucky D';
-  book2.title = '1984';
-  book2.author = 'George Orwell';
+  user.firstName = 'Freddie';
+  user.lastName = 'Mercury';
+  user.email = 'freddie@example.com';
+  user.save(function (err, userSaved) {
+    var book1 = new Book();
 
-  book1.save(function (err, book1Result) {
     if (err) {
-      console.log('could not create book1: err:', err);
+      console.log('could not create user: err:', err);
       process.exit(1);
     }
-    booksSaved.push(book1Result);
-    book2.save(function (err, book2Result) {
+
+    book1.title = 'Great Expectations';
+    book1.author = 'Chucky D';
+    book1.user = userSaved._id;
+    book1.save(function (err, book1Saved) {
+      var book2 = new Book();
+
       if (err) {
-        console.log('could not create book2: err:', err);
+        console.log('could not create book1: err:', err);
         process.exit(1);
       }
-      booksSaved.push(book2Result);
-      console.log('booksSaved:', booksSaved);
-      user.firstName = 'Freddie';
-      user.lastName = 'Mercury';
-      user.email = 'freddie@example.com';
-      user.books.push(booksSaved[0]._id);
-      user.books.push(booksSaved[1]._id);
-      user.save(function (err, userResult) {
+      console.log('book1 saved:', book1Saved);
+
+      book2.title = '1984';
+      book2.author = 'George Orwell';
+      book2.user = userSaved._id;
+      book2.save(function (err, book2Saved) {
         if (err) {
-          console.log('could not create user: err:', err);
+          console.log('could not create book2: err:', err);
           process.exit(1);
         }
-        console.log('user saved:', userResult);
-        mongoose.connection.close();
+        console.log('book2 saved:', book2Saved);
+
+        userSaved.books.push(book1._id);
+        userSaved.books.push(book2._id);
+        userSaved.save(function (err, userWithBooksSaved) {
+          if (err) {
+            console.log('could not create user: err:', err);
+            process.exit(1);
+          }
+          console.log('user saved with books:', userWithBooksSaved);
+          mongoose.connection.close();
+        });
       });
     });
   });
