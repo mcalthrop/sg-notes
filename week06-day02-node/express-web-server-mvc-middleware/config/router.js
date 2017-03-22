@@ -24,7 +24,9 @@ router.route('/users/:id')
   .delete(usersController.destroy);
 
 // books
+router.get('/books/:id/edit', booksController.edit);
 router.route('/books/:id')
+  .put(booksController.update)
   .delete(booksController.destroy);
 
 module.exports = router;
