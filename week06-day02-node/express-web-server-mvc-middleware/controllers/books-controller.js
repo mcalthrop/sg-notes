@@ -20,6 +20,7 @@ function editBook(req, res) {
 // Action: update
 function updateBook(req, res) {
   var bookId = req.params.id;
+  var userId = req.body.userId;
   var updatedBook = {
     title: req.body.title,
     author: req.body.author
@@ -31,7 +32,7 @@ function updateBook(req, res) {
       res.status(404).send('Could not get existing book to update');
       return;
     }
-    res.redirect('/users');
+    res.redirect('/users/' + userId);
   });
 }
 
