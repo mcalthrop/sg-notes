@@ -56,11 +56,14 @@ describe('Books', function () {
             .end(function (err, res) {
               var bookId = getFirstBookIdFromUserPageHTML(res.text);
 
-              res.should.have.status(200);
               request
                 .delete('/books/' + bookId)
+                .send({ userId: userId })
                 .end(function (err, res) {
+                  var bookIdRegExp = new RegExp(bookId);
+
                   res.should.have.status(200);
+                  res.text.should.not.match(bookIdRegExp);
                   done();
                 });
             });
