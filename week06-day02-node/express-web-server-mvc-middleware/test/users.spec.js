@@ -98,7 +98,7 @@ describe('Users', function () {
         });
     });
     it('should create new user when input data is valid', function (done) {
-      var testFirstName = TestUtils.generateUniqueFirstName();
+      var testFirstName = TestUtils.generateUniqueString('first-name');
 
       request
         .post('/users')

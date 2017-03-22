@@ -21,8 +21,8 @@ var TestUtils = {
 
     return pathElements[2];
   },
-  generateUniqueFirstName: function () {
-    return 'firstName' + Math.random();
+  generateUniqueString: function (prefix) {
+    return prefix + Math.random();
   }
 };
 
