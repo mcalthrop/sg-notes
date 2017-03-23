@@ -1,5 +1,6 @@
 var express = require('express');
 var router = require('./config/router');
+var User = require('./models/user-model');
 var bodyParser = require('body-parser');
 var layouts = require('express-ejs-layouts');
 var methodOverride = require('method-override');
@@ -36,6 +37,24 @@ app.use(methodOverride(function (req) {
     return method;
   }
 }));
+app.use(function (req, res, next) {
+  var userId = req.session.userId;
+
+  if (!userId) {
+    res.locals.user = false;
+    next();
+  } else {
+    User.findById(userId, function (err, user) {
+      if (user) {
+        req.user = user;
+        res.locals.user = user;
+      } else {
+        delete req.session.userId;
+      }
+      next(err);
+    });
+  }
+});
 
 app.use(router);
 

@@ -4,6 +4,9 @@ require('../models/book-model');
 
 // Action: index
 function indexUsers(req, res) {
+  if (!req.user) {
+    res.redirect('/sessions/new');
+  }
   User.find({}, function (err, users) {
     if (err) {
       console.log('Could not get list of users:', err);

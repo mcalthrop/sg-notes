@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var usersController = require('../controllers/users-controller');
 var booksController = require('../controllers/books-controller');
+var sessionsController = require('../controllers/sessions-controller');
 
 // home page
 router.get('/', function (req, res) {
@@ -29,5 +30,11 @@ router.post('/books', booksController.create);
 router.route('/books/:id')
   .put(booksController.update)
   .delete(booksController.destroy);
+
+// sessions
+router.route('/sessions')
+  .post(sessionsController.create)
+  .delete(sessionsController.delete);
+router.get('/sessions/new', sessionsController.new);
 
 module.exports = router;
