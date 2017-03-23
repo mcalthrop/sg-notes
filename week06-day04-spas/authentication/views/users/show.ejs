@@ -1,0 +1,37 @@
+<% if (user) { %>
+  <p>First name: <%= user.firstName %></p>
+  <p>Last name: <%= user.lastName %></p>
+  <p>Email: <%= user.email %></p>
+  <form method="post" action="/users/<%= user.id %>">
+    <input type="hidden" name="_method" value="delete">
+    <button>Delete</button>
+    <a href="/users/<%= user.id %>/edit">Edit</a>
+  </form>
+  <h2>Books</h2>
+  <ol>
+    <% for (var i = 0; i < user.books.length; i++) { %>
+      <li>
+        <%= user.books[i].title %> <em>by <%= user.books[i].author %></em>
+        <form method="post" action="/books/<%= user.books[i].id %>">
+          <input type="hidden" name="_method" value="delete">
+          <input type="hidden" name="userId" value="<%= user.id %>">
+          <button>Delete</button>
+          <a href="/books/<%= user.books[i].id %>/edit">Edit</a>
+        </form>
+      </li>
+    <% } %>
+  </ol>
+  <form method="post" action="/books">
+    <input type="hidden" name="userId" value="<%= user.id %>">
+
+    <label for="title">Title</label>
+    <input id="title" type="text" name="title" placeholder="the book's title">
+
+    <label for="author">Author</label>
+    <input id="author" type="text" name="author" placeholder="the book's author">
+
+    <button>Create new</button>
+</form>
+<% } else { %>
+  <em>User not found. Soz.</em>
+<% } %>
