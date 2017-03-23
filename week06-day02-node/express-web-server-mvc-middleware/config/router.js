@@ -25,6 +25,7 @@ router.route('/users/:id')
 
 // books
 router.get('/books/:id/edit', booksController.edit);
+router.post('/books', booksController.create);
 router.route('/books/:id')
   .put(booksController.update)
   .delete(booksController.destroy);
