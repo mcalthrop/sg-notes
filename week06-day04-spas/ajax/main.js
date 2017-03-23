@@ -1,11 +1,13 @@
 $(function () {
+  var jokeUrl = 'http://api.icndb.com/jokes/random';
+
   console.log('page is loaded');
 
   function ajaxTheManualWay() {
     var request = new XMLHttpRequest();
 
     console.log('AJAX the manual way');
-    request.open('GET', 'http://api.icndb.com/jokes/random');
+    request.open('GET', jokeUrl);
     request.addEventListener('load', function () {
       var json = JSON.parse(this.responseText);
       var jokeElement = document.getElementById('joke');
@@ -18,7 +20,7 @@ $(function () {
   function ajaxTheJQueryWay() {
     console.log('AJAX the jQuery way');
 
-    $.get('http://api.icndb.com/jokes/random', function (data) {
+    $.get(jokeUrl, function (data) {
       $('#joke').html(data.value.joke);
     });
   }
