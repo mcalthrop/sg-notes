@@ -26,7 +26,7 @@ $(function () {
   }
 
   // source: http://stackoverflow.com/a/5915122/155206
-  function selectRandomElement (items) {
+  function selectRandomElement(items) {
     return items[Math.floor(Math.random() * items.length)];
   }
 
