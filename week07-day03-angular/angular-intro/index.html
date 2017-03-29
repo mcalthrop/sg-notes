@@ -21,8 +21,15 @@
 
   <p>Trainers:</p>
   <ul>
-    <li ng-repeat="trainer in home.trainers track by $index">{{ trainer }}</li>
+    <li ng-repeat="trainer in home.trainers track by $index">
+      {{ trainer }}
+      <input type="text" ng-value="trainer" placeholder="edit trainer's name">
+      <button type="button">save name</button>
+      <button type="button">delete trainer</button>
+    </li>
   </ul>
+
+  <button type="button">clear trainer list</button>
 
   <h2>Add a trainer</h2>
   <form>
