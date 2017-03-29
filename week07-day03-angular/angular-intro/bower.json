@@ -1,0 +1,20 @@
+{
+  "name": "angular-intro",
+  "homepage": "https://github.com/mcalthrop/sg-notes/week07-day03-angular/angular-intro",
+  "authors": [
+    "Matt Calthrop <mcalthrop@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.3"
+  }
+}
