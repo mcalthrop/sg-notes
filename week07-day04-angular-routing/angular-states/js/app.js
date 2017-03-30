@@ -1,2 +1,2 @@
 angular
-  .module('angularstates', [])
+  .module('angularstates', []);
