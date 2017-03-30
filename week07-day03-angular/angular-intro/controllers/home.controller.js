@@ -56,6 +56,10 @@ function HomeController() {
     return controller.trainers.length > 0;
   };
 
+  controller.isAddButtonDisabled = function () {
+    return !controller.newTrainerName;
+  };
+
   function init() {
     console.log('inside HomeController');
     controller.newTrainerName = '';
