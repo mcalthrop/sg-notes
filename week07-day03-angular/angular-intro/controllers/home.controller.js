@@ -39,6 +39,14 @@ function HomeController() {
     controller.newTrainerName = '';
   };
 
+  controller.clearTrainerList = function () {
+    controller.trainers = [];
+  };
+
+  controller.canDisplayTrainerList = function () {
+    return controller.trainers.length > 0;
+  };
+
   function init() {
     console.log('inside HomeController');
     controller.newTrainerName = '';

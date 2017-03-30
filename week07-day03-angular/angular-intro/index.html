@@ -19,17 +19,21 @@
 <body ng-controller="HomeController as home">
   <h1>{{ home.title }}</h1>
 
-  <p>Trainers:</p>
-  <ul>
-    <li ng-repeat="trainer in home.trainers track by $index">
-      {{ trainer }}
-      <input type="text" ng-value="trainer" placeholder="edit trainer's name">
-      <button type="button">save name</button>
-      <button type="button">delete trainer</button>
-    </li>
-  </ul>
+  <div ng-if="home.canDisplayTrainerList()">
+    <h2>Trainers</h2>
+    <ul>
+      <li ng-repeat="trainer in home.trainers track by $index">
+        {{ trainer }}
+        <input type="text" ng-value="trainer" placeholder="edit trainer's name">
+        <button type="button">save name</button>
+        <button type="button">delete trainer</button>
+      </li>
+    </ul>
 
-  <button type="button">clear trainer list</button>
+    <button
+      type="button"
+      ng-click="home.clearTrainerList()">clear trainer list</button>
+  </div>
 
   <h2>Add a trainer</h2>
   <form>
