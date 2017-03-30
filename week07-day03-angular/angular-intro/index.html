@@ -26,7 +26,7 @@
         {{ trainer }}
         <input type="text" ng-value="trainer" placeholder="edit trainer's name">
         <button type="button">save name</button>
-        <button type="button">delete trainer</button>
+        <button type="button" ng-click="home.deleteTrainer($index)">delete trainer</button>
       </li>
     </ul>
 

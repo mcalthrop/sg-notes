@@ -43,6 +43,10 @@ function HomeController() {
     controller.trainers = [];
   };
 
+  controller.deleteTrainer = function (index) {
+    controller.trainers.splice(index, 1);
+  };
+
   controller.canDisplayTrainerList = function () {
     return controller.trainers.length > 0;
   };
