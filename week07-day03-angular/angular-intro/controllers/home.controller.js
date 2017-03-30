@@ -37,6 +37,7 @@ function HomeController() {
     console.log('addTrainer: controller.newTrainerName:', controller.newTrainerName);
     controller.trainers.push(controller.newTrainerName);
     controller.newTrainerName = '';
+    controller.updatedTrainerNames = controller.trainers.slice(0);
   };
 
   controller.clearTrainerList = function () {
@@ -45,6 +46,10 @@ function HomeController() {
 
   controller.deleteTrainer = function (index) {
     controller.trainers.splice(index, 1);
+  };
+
+  controller.updateTrainer = function (index) {
+    controller.trainers[index] = controller.updatedTrainerNames[index];
   };
 
   controller.canDisplayTrainerList = function () {
@@ -56,6 +61,9 @@ function HomeController() {
     controller.newTrainerName = '';
     controller.title = 'Home page';
     controller.trainers = ['Steve', 'Matt', 'Ollie', 'Niall'];
+    // duplicate array
+    // source: https://davidwalsh.name/javascript-clone-array
+    controller.updatedTrainerNames = controller.trainers.slice(0);
     controller.hideGonzo();
   }
 
