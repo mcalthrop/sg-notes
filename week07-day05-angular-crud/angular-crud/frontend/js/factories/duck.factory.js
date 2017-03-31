@@ -5,6 +5,12 @@ function DuckFactory(API_URL, $http) {
         method: 'GET',
         url: `${API_URL}/ducks`
       });
+    },
+    getOne: function (id) {
+      return $http({
+        method: 'GET',
+        url: `${API_URL}/ducks/${id}`
+      });
     }
   };
 }

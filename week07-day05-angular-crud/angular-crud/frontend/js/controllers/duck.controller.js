@@ -1,15 +1,28 @@
-function DuckController(DuckFactory) {
+function DuckController($stateParams, DuckFactory) {
   var controller = this;
+
+  controller.getDuck = function () {
+    var duckId = $stateParams.duckId;
+
+    DuckFactory.getOne(duckId).then(
+      function success(response) {
+        controller.selectedDuck = response.data;
+      },
+      function error(error) {
+        console.warn('Error getting duck:', error);
+      }
+    );
+  };
 
   function init() {
     console.log(controller);
+    controller.selectedDuck = undefined;
     controller.allDucks = [];
     DuckFactory.getAll().then(
-      function (response) {
+      function success(response) {
         controller.allDucks = response.data;
-        console.log('allDucks:', controller.allDucks);
       },
-      function (error) {
+      function error(error) {
         console.warn('Error getting ducks:', error);
       }
     );
