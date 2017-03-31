@@ -1,1 +1,22 @@
 <h2>All Ducks</h2>
+
+<ul>
+  <li class="duck" ng-repeat="duck in duck.allDucks">
+    <div>
+      <span>Name: </span>
+      <a>{{ duck.name }}</a>
+    </div>
+    <div>
+      <span>Location: {{ duck.location }}</span>
+
+    </div>
+    <div>
+      <span>Status: {{ duck.color }}</span>
+
+    </div>
+    <div>
+      <span>Description: {{ duck.desc }}</span>
+
+    </div>
+  </li>
+</ul>

@@ -1,7 +1,3 @@
-angular
-  .module('DuckApp', ['ui.router'])
-  .config(MainRouter);
-
 function MainRouter ($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('home', {
@@ -11,3 +7,8 @@ function MainRouter ($stateProvider, $urlRouterProvider) {
 
   $urlRouterProvider.otherwise('/ducks');
 }
+
+angular
+  .module('DuckApp', ['ui.router'])
+  .constant('API_URL', 'http://localhost:3000')
+  .config(MainRouter);
