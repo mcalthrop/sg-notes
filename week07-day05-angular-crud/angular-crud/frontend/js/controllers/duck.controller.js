@@ -38,6 +38,21 @@ function DuckController($state, $stateParams, DuckFactory) {
     );
   };
 
+  controller.editDuck = function (duckId) {
+    $state.go('edit', { duckId: duckId });
+  };
+
+  controller.updateDuck = function () {
+    DuckFactory.editOne(controller.selectedDuck.duck).then(
+      function success(response) {
+        console.log('duck updated:', response);
+      },
+      function error(error) {
+        console.warn('Error updating duck:', error);
+      }
+    );
+  };
+
   function init() {
     console.log(controller);
     controller.selectedDuck = undefined;

@@ -5,6 +5,7 @@
     <div>
       <span>Name: </span>
       <a ui-sref="show({duckId: d._id})">{{ d.name }}</a>
+      <button type="button" ng-click="duck.editDuck(d._id)">edit duck</button>
       <button type="button" ng-click="duck.deleteDuck(d._id)">delete duck</button>
     </div>
   </li>

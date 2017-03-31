@@ -24,6 +24,13 @@ function DuckFactory(API_URL, $http) {
         method: 'DELETE',
         url: `${API_URL}/ducks/${duckId}`
       });
+    },
+    editOne: function (editedDuck) {
+      return $http({
+        method: 'PATCH',
+        url: `${API_URL}/ducks/${editedDuck._id}`,
+        data: editedDuck
+      });
     }
   };
 }

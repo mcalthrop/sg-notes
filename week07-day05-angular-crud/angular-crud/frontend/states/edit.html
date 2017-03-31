@@ -1,0 +1,54 @@
+<h2>Edit Duck</h2>
+
+<section ng-init="duck.getDuck()">
+
+  <form ng-submit="duck.updateDuck()">
+
+    <div>
+      <label for="new-duck-name">Name:</label>
+      <input
+        type="text"
+        id="new-duck-name"
+        placeholder="Sleepy Duck"
+        ng-model="duck.selectedDuck.duck.name">
+    </div>
+
+    <div>
+      <label for="new-duck-location">Location:</label>
+      <input
+        type="text"
+        id="new-duck-loction"
+        placeholder="London..."
+        ng-model="duck.selectedDuck.duck.location">
+    </div>
+
+    <div>
+      <label for="new-duck-desc">Description:</label>
+      <input
+        type="text"
+        id="new-duck-desc"
+        placeholder="Very Smelly..."
+        ng-model="duck.selectedDuck.duck.desc">
+    </div>
+
+    <div>
+      <label for="new-duck-color">Color</label>
+      <select id="new-duck-color" ng-model="duck.selectedDuck.duck.color">
+
+        <option
+          ng-repeat="option in duck.colors"
+          ng-selected="option"
+          value="{{ option }}">{{ option }}
+        </option>
+
+      </select>
+    </div>
+
+
+    <div>
+      <input type="submit" value="Update">
+    </div>
+
+  </form>
+
+</section>
