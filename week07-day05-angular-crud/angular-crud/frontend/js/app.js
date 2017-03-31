@@ -4,6 +4,10 @@ function MainRouter ($stateProvider, $urlRouterProvider) {
       url: '/ducks',
       templateUrl: '/states/home.html'
     })
+    .state('new', {
+      url: '/ducks/new',
+      templateUrl: '/states/new.html'
+    })
     .state('show', {
       url: '/ducks/:duckId',
       templateUrl: '/states/show.html'
