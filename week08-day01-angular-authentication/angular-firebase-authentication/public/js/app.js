@@ -24,7 +24,7 @@ function MainRouter ($stateProvider, $urlRouterProvider) {
       resolve: {
         currentAuth: [
           'AuthFactory',
-          function (AuthFactory) {
+          (AuthFactory) => {
             return AuthFactory.$requireSignIn();
           }
         ]
