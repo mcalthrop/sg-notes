@@ -7,6 +7,13 @@ angular
       templateUrl: 'directives/profile/profile.directive.html',
       scope: {
         person: '='
+      },
+      link: function (scope/*, element, attrs */) {
+        scope.showSkills = false;
+
+        scope.toggleSkills = function () {
+          scope.showSkills = !scope.showSkills;
+        };
       }
     };
   });

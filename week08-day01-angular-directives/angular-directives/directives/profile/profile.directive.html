@@ -2,7 +2,9 @@
 
   <h3>{{ person.name }} - <em>{{ person.age }}</em></h3>
 
-  <ul>
+  <button ng-click="toggleSkills()">Toggle skills</button>
+
+  <ul ng-if="showSkills">
     <li ng-repeat="skill in person.skills">{{ skill }}</li>
   </ul>
 </div>
