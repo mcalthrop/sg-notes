@@ -1,0 +1,28 @@
+.profile {
+  height: 162px;
+  padding: 10px;
+  margin: 10px;
+  display: inline-block;
+  width: 300px;
+  background-color: #82bdff;
+  border: solid black 5px;
+  border-radius: 6px;
+  vertical-align: top;
+}
+.female {
+  background-color: pink;
+}
+.sidebar {
+  display: inline-block;
+  height: 100vh;
+  max-width: 29%;
+  background: grey;
+  vertical-align: top;
+}
+.profiles {
+  display: inline-block;
+  width: 70%;
+}
+.hover {
+  color: red;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="angularDirectives">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1">
+
+  <script src="bower_components/angular/angular.js"></script>
+
+  <script src="app.js"></script>
+  <script src="controllers/main.controller.js"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <title>Angular Filters</title>
+</head>
+<body ng-controller="mainController as main">
+  <h1>The People of Angular</h1>
+
+  <section class="profiles">
+
+    <div class="profile" ng-repeat="person in main.people">
+      <h3>{{ person.name }} - <em>{{ person.age }}</em></h3>
+
+      <strong>
+        <li ng-repeat="skill in person.skills"> {{ skill }}</li>
+      </strong>
+
+    </div>
+
+  </section>
+
+</body>
+</html>
