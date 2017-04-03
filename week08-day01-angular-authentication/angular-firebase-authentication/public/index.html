@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <title>AngularFire Authentication</title>
+
+  <!-- CDNs -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+
+  <!-- JS FILES -->
+  <script src="js/app.js"></script>
+  <script src="js/controllers/secrets.controller.js"></script>
+
+</head>
+
+<body>
+
+  <nav class="headerElement">
+    <h1>Sparta Secrets</h1>
+    <a ui-sref="home">Home</a>
+    <a ui-sref="secret">View Secrets</a>
+  </nav>
+
+
+  <section class="mainContainter" ui-view>
+    <!-- states get rendered here  -->
+  </section>
+
+</body>
+</html>
