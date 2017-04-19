@@ -28,5 +28,5 @@ function TodosController(TodosFactory) {
 TodosController.$inject = ['TodosFactory'];
 
 angular
-  .module('sampleApp')
+  .module('todosApp')
   .controller('TodosController', TodosController);

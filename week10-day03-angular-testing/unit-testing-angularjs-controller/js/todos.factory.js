@@ -9,5 +9,5 @@ function TodosFactory() {
 }
 
 angular
-  .module('sampleApp')
+  .module('todosApp')
   .factory('TodosFactory', TodosFactory);
