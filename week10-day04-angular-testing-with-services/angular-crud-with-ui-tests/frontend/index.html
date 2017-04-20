@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="DuckApp">
+<head>
+
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+  <script src="js/app.js"></script>
+  <script src="js/factories/duck.factory.js"></script>
+  <script src="js/controllers/duck.controller.js"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <meta charset="UTF-8">
+  <title>Sparta Ducks</title>
+</head>
+<body>
+  <h1>Ducks Of Sparta</h1>
+  <nav>
+    <ul>
+      <li><a ui-sref="home">Home</a></li>
+      <li><a ui-sref="new">New duck</a></li>
+    </ul>
+  </nav>
+
+  <section ng-controller="DuckController as duck" ui-view>
+
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<h2>New Duck</h2>
+
+<form ng-submit="duck.addDuck()">
+
+  <div>
+    <label for="new-duck-name">Name:</label>
+    <input
+      type="text"
+      id="new-duck-name"
+      placeholder="Jack the ripper..."
+      ng-model="duck.newDuck.name">
+  </div>
+
+  <div>
+    <label for="new-duck-location">Location:</label>
+    <input
+      type="text"
+      id="new-duck-location"
+      placeholder="London..."
+      ng-model="duck.newDuck.location">
+  </div>
+
+  <div>
+    <label for="new-duck-desc">Description:</label>
+    <input
+      type="text"
+      id="new-duck-desc"
+      placeholder="Very Smelly..."
+      ng-model="duck.newDuck.desc">
+  </div>
+
+  <div>
+    <label for="new-duck-color">Color</label>
+
+    <select id="new-duck-color" ng-model="duck.newDuck.color">
+
+      <option
+        ng-repeat="option in duck.colors"
+        value="{{ option }}">{{ option }}
+      </option>
+
+    </select>
+  </div>
+
+
+  <div>
+    <input type="submit" value="Add Duck">
+  </div>
+
+</form>

@@ -1,0 +1,8 @@
+.duck {
+  margin: 10px;
+  padding: 10px;
+}
+
+nav ul li {
+  display: inline-block;
+}
