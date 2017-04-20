@@ -1,31 +1,31 @@
 function DuckFactory(API_URL, $http) {
   return {
-    getAll: function () {
+    getAll() {
       return $http({
         method: 'GET',
         url: `${API_URL}/ducks`
       });
     },
-    getOne: function (duckId) {
+    getOne(duckId) {
       return $http({
         method: 'GET',
         url: `${API_URL}/ducks/${duckId}`
       });
     },
-    createOne: function (newDuck) {
+    createOne(newDuck) {
       return $http({
         method: 'POST',
         url: `${API_URL}/ducks`,
         data: newDuck
       });
     },
-    deleteOne: function (duckId) {
+    deleteOne(duckId) {
       return $http({
         method: 'DELETE',
         url: `${API_URL}/ducks/${duckId}`
       });
     },
-    editOne: function (editedDuck) {
+    editOne(editedDuck) {
       return $http({
         method: 'PATCH',
         url: `${API_URL}/ducks/${editedDuck._id}`,
