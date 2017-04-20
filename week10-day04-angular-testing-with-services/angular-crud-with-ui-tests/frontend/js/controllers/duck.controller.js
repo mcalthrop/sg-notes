@@ -38,7 +38,7 @@ function DuckController($state, $stateParams, DuckFactory) {
   };
 
   controller.editDuck = (duckId) => {
-    $state.go('edit', { duckId });
+    $state.go('edit', { duckId: duckId });
   };
 
   controller.updateDuck = () => {
