@@ -3,8 +3,9 @@ describe('DuckController', () => {
   let httpBackend;
   let mock$state;
   let mock$stateParams;
-  let testDuckId;
   let API_URL;
+  const testDuckId = 'quirk';
+  const testDucks = ['Donald', 'Daffy'];
 
   beforeEach(() => {
     module('DuckApp');
@@ -21,16 +22,16 @@ describe('DuckController', () => {
         $stateParams: mock$stateParams,
         $state: mock$state
       });
+      httpBackend
+        .when('GET', `${API_URL}/ducks`)
+        .respond(testDucks);
     });
   });
 
   describe('initialisation', () => {
     it('should populate allDucks with correct data', () => {
-      const testDucks = ['duck one', 'duck two'];
-
       httpBackend
-        .expect('GET', `${API_URL}/ducks`)
-        .respond(testDucks);
+        .expect('GET', `${API_URL}/ducks`);
       httpBackend.flush();
       expect(controllerToTest.allDucks).toEqual(testDucks);
       httpBackend.verifyNoOutstandingExpectation();
@@ -39,10 +40,20 @@ describe('DuckController', () => {
 
   describe('editDuck()', () => {
     it('should go to "edit" state with specified duckId', () => {
-      const testDuckId = 'quark';
-
       controllerToTest.editDuck(testDuckId);
       expect(mock$state.go).toHaveBeenCalledWith('edit', { duckId: testDuckId });
+    });
+  });
+
+  describe('deleteDuck()', () => {
+    it('should make API call to delete specified duck', () => {
+
+      httpBackend
+        .expect('DELETE', `${API_URL}/ducks/${testDuckId}`)
+        .respond({});
+      controllerToTest.deleteDuck(testDuckId);
+      httpBackend.flush();
+      httpBackend.verifyNoOutstandingExpectation();
     });
   });
 
