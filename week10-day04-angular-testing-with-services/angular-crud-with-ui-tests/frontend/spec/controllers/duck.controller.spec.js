@@ -47,11 +47,28 @@ describe('DuckController', () => {
 
   describe('deleteDuck()', () => {
     it('should make API call to delete specified duck', () => {
-
       httpBackend
         .expect('DELETE', `${API_URL}/ducks/${testDuckId}`)
         .respond({});
       controllerToTest.deleteDuck(testDuckId);
+      httpBackend.flush();
+      httpBackend.verifyNoOutstandingExpectation();
+    });
+  });
+
+  describe('updateDuck()', () => {
+    it('should make API call to update duck with correct data', () => {
+      const testUpdatedDuck = {
+        _id: testDuckId
+      };
+
+      httpBackend
+        .expect('PATCH', `${API_URL}/ducks/${testDuckId}`, testUpdatedDuck)
+        .respond({});
+      controllerToTest.selectedDuck = {
+        duck: testUpdatedDuck
+      };
+      controllerToTest.updateDuck();
       httpBackend.flush();
       httpBackend.verifyNoOutstandingExpectation();
     });
